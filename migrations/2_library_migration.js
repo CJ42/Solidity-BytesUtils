@@ -1,3 +1,3 @@
-const BytesUtils = artifacts.require('BytesUtils')
+const BitsUtils = artifacts.require('BitsUtils')
 
-module.exports = deployer => deployer.deploy(BytesUtils)
+module.exports = deployer => deployer.deploy(BitsUtils)
