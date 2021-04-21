@@ -1,86 +1,10 @@
-pragma solidity ^0.8.0;
+// SPDX-License-Identifier: Unlicense
+pragma solidity ^0.7.0;
 
-// test
-
-/// @title A Bytes Utility Library for Solidity Contracts
+/// @title Library to manipulate bytes Solidity Contracts
 /// @author Jean Cavallera (CJ42)
 /// @dev most functions use low-level Assembly
 library BytesUtils {
-
-    /// #1 check if number is Odd
-    function isOdd(uint x) public pure returns (bool) {
-        assembly {
-            mstore(0x00, and(x, 1))
-            return(0x00, 32)
-        }
-    }
-
-    /// #2.1 Test if the n-th bit is set.
-    /// for unsigned integers
-    function isNthBitSet(uint x, uint n) public pure returns (bool) {
-        assembly {
-            mstore(0x00, and(x, shl(1, n)))
-            return(0x00, 32)
-        }
-    }
-    
-    /// #2.2 Test if the n-th bit is set.
-    /// for signed integers (function overloading)
-    /*function isNthBitSet(int x, uint n) public pure returns (bool) {
-        assembly {
-            mstore(0x00, and(x, shl(1, n)))
-            return(0x00, 32)
-        }
-    }*/
-    
-    /// #3 Set the n-th bit.
-    function setNthBit(uint x, uint n) public pure returns (uint) {
-        assembly {
-            mstore(0x00, or(x, shl(1, n)))
-            return(0x00, 32)
-        }
-    }
-    
-    /// #4 Unset the n-th bit.
-    // not expected result
-    function unsetNthBit(uint x, uint n) public pure returns (uint) {
-        assembly {
-            mstore(0x00, and(x, not(shl(1, n))))
-            return(0x00, 32)
-        }
-    }
-    
-    /// #5 Toggle the n-th bit.
-    // not expected result
-    function toggleNthBit(uint x, uint n) public pure returns (uint) {
-        assembly {
-            mstore(0x00, xor(x, shl(1, n)))
-            return(0x00, 32)
-        }
-    }
-    
-    /// #6 Turn off the rightmost 1-bit
-    
-    
-    
-    
-    /// #7. Isolate the rightmost 1-bit.
-    
-    
-    
-    
-    /// #8. Right propagate the rightmost 1-bit.
-    
-    
-    
-    
-    /// #9. Isolate the rightmost 0-bit.
-    
-    
-    
-    
-    /// #10. Turn on the rightmost 0-bit.
-
 
     function getFirstHalfBytes(bytes32 _data) public pure returns (bytes16) {
         return bytes16(_data);
@@ -130,12 +54,12 @@ library BytesUtils {
     //  mask: 0x3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE00000000000000000000000000000000
     // should return: just the 'cafe' part
     // not working yet
-    function getFirstHalfBytesTest(bytes32 _value) public pure returns(bytes16) {
-        bytes16 nOnes = bytes16(uint128(2 ** 16 - 1));
-        bytes16 _mask = nOnes >> (8 - 16);
-        bytes32 result = _value & _mask;
-        return bytes16(result);
-    }
+    // function getFirstHalfBytesTest(bytes32 _value) public pure returns(bytes16) {
+    //     bytes16 nOnes = bytes16(uint128(2 ** 16 - 1));
+    //     bytes16 _mask = nOnes >> (8 - 16);
+    //     bytes32 result = _value & _mask;
+    //     return bytes16(result);
+    // }
 
     // not working yet
     function getLastHalfBytesTest(
