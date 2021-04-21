@@ -1,0 +1,27 @@
+{
+  "name": "bytesutils",
+  "version": "1.0.0",
+  "description": "Library to manipulate bytes in Solidity",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CJ42/BytesUtils.git"
+  },
+  "keywords": [
+    "solidity",
+    "bytes",
+    "ethereum"
+  ],
+  "author": "Jean Cavallera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CJ42/BytesUtils/issues"
+  },
+  "homepage": "https://github.com/CJ42/BytesUtils#readme",
+  "dependencies": {
+    "chai": "^4.3.4"
+  }
+}
