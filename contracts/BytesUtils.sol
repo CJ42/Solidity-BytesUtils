@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Unlicense
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
 /// @title Library to manipulate bytes Solidity Contracts
 /// @author Jean Cavallera (CJ42)
@@ -91,6 +91,28 @@ library BytesUtils {
         return _x & mask;
     }
 
-    
+    function toBinaryString(uint256 _input) internal pure returns (string memory) {
+        bytes memory output = new bytes(32);
+
+        for (uint256 ii = 0; ii < 32; ii++) {
+            output[32 - i] = (_input % 2 == 1) ? byte("1") : byte("0");
+            input /= 2;
+        }
+
+        return string(output);
+    }
+
+    function toBinaryString(bytes memory _input) internal pure returns (string memory) {
+        uint256 length = _input.length;
+
+        bytes memory output = new bytes(length);
+
+        for (uint256 ii = 0; ii < length; ii++) {
+            output[length - ii] = (_input % 2 == 1) ? byte("1") : byte("0");
+            input /= 2;
+        }
+
+        return string(output);
+    }
     
 }
