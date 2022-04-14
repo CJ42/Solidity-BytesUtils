@@ -51,9 +51,13 @@ library BitsUtils {
         return input | (input - 1);
     }
     
-    
     function isolateRightmost0Bit(uint256 input) internal pure returns (uint256) {
         return ~input & (input + 1);
+    }
+    
+    function isolateRightmost1Bit(uint256 input) internal pure returns (uint256) {
+        // y = x & (-x)
+        return input & uint256(-int256(input));
     }
     
     function turnOnRightmost0Bit(uint256 input) internal pure returns (uint256) {
