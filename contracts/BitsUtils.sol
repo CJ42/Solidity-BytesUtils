@@ -69,8 +69,9 @@ library BitsUtils {
 
     function isOddAsm(uint256 input) internal pure returns (bool) {
         assembly {
-            mstore(0x00, and(input, 1))
-            return(0x00, 32)
+            let free_memory_pointer := mload(0x40)
+            mstore(free_memory_pointer, and(input, 1))
+            return(free_memory_pointer, 32)
         }
     }
 
@@ -80,36 +81,41 @@ library BitsUtils {
         // else:
         //    -> anding will eliminate ALL the bits (so will return 0)
         assembly {
-            mstore(0x00, and(input, shl(1, nthBit)))
-            return(0x00, 32)
+            let free_memory_pointer := mload(0x40)
+            mstore(free_memory_pointer, and(input, shl(1, nthBit)))
+            return(free_memory_pointer, 32)
         }   
     }
 
     function setNthBitAsm(uint256 input, uint256 nthBit) internal pure returns (uint256) {
         assembly {
-            mstore(0x00, or(input, shl(nthBit, 1)))
-            return(0x00, 32)
+            let free_memory_pointer := mload(0x40)
+            mstore(free_memory_pointer, or(input, shl(nthBit, 1)))
+            return(free_memory_pointer, 32)
         }
     }
 
     function unsetNthBitAsm(uint256 input, uint256 nthBit) internal pure returns (uint256) {
         assembly {
-            mstore(0x00, and(input, not(shl(nthBit, 1))))
-            return(0x00, 32)
+            let free_memory_pointer := mload(0x40)
+            mstore(free_memory_pointer, and(input, not(shl(nthBit, 1))))
+            return(free_memory_pointer, 32)
         }
     }
 
     function toggleNthBitAsm(uint256 input, uint256 nthBit) internal pure returns (uint256) {
         assembly {
-            mstore(0x00, xor(input, shl(nthBit, 1)))
-            return(0x00, 32)
+            let free_memory_pointer := mload(0x40)
+            mstore(free_memory_pointer, xor(input, shl(nthBit, 1)))
+            return(free_memory_pointer, 32)
         }        
     }
 
     function toggleRightmost1BitAsm(uint256 input) internal pure returns (uint256) {
         assembly {
-            mstore(0x00, and(input, sub(input, 1)))
-            return(0x00, 32)
+            let free_memory_pointer := mload(0x40)
+            mstore(free_memory_pointer, and(input, sub(input, 1)))
+            return(free_memory_pointer, 32)
         }
     }
 }
